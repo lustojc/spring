@@ -124,3 +124,10 @@ a img {
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+.outer-link svg {
+  width: 14px;
+  height: 18px;
+  margin-left: 2px;
+  padding-top: 6px;
+}
