@@ -52,6 +52,10 @@ a img {
   text-decoration: none;
 }
 
+.burger-menu {
+  display: none;
+}
+
 /* Dropdown p */
 .drop {
   color: white;
@@ -189,11 +193,6 @@ a img {
 
 .card-item:hover {
   border: 1px solid grey;
-  transition: all 0.2s, transform 0.2s;
-  transform: translateY(0);
-  position: relative;
-  box-shadow: none;
-  top: 0;
 }
 
 .card-item img {
@@ -210,4 +209,33 @@ a img {
   line-height: 1.5;
   color: #bbbcbe;
   font-size: 18px;
+}
+
+@media screen and (max-width: 900px) {
+  .navbar {
+    display: none;
+  }
+
+  .nav {
+    padding-bottom: 10px;
+  }
+
+  .burger-menu {
+    display: block;
+    margin-top: 15px;
+  }
+
+  .burger-line {
+    width: 25px;
+    height: 3px;
+    color: white;
+    background: white;
+    margin-bottom: 4px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card-item {
+    width: 100%;
+  }
 }
