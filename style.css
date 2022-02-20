@@ -11,6 +11,10 @@ ul li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -152,12 +156,58 @@ a img {
 }
 
 .info-text {
-  max-width: 1000px;
-  padding-bottom: 50px;
+  max-width: 1100px;
+  padding-bottom: 70px;
 }
 
 .info-text span {
   color: #bbbcbe;
   font-size: 25px;
-  line-height: 1.6;
+  line-height: 1.7;
+}
+
+.card {
+  background: #262a2d;
+  padding: 50px 20px;
+}
+
+.card-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.card-item {
+  width: 48.5%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 40px 30px 70px 20px;
+  background: #1b1f23;
+  border-radius: 5px;
+  border: 1px solid #1b1f23;
+}
+
+.card-item:hover {
+  border: 1px solid grey;
+  transition: all 0.2s, transform 0.2s;
+  transform: translateY(0);
+  position: relative;
+  box-shadow: none;
+  top: 0;
+}
+
+.card-item img {
+  margin-right: 20px;
+}
+
+.card-title {
+  color: white;
+  font-size: 24px;
+}
+
+.card-text {
+  margin: 16px 0;
+  line-height: 1.5;
+  color: #bbbcbe;
+  font-size: 18px;
 }
