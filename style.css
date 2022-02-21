@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: Open Sans, sans-serif;
+}
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.dp-flex {
+  display: flex;
+}
+
+.jc-betw {
+  justify-content: space-between;
+}
+
+.nav {
+  background: #1b1f23;
+  color: white;
+  border-bottom: 1px solid #2b2f33;
+  padding-top: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a img {
+  width: 187px;
+  height: 48px;
+}
+
+.navbar {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+}
+
+.burger-menu {
+  display: none;
+}
+
+/* Dropdown p */
+.drop {
+  color: white;
+  padding: 16px 16px 25px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+}
+
+.drop:hover {
+  cursor: default;
+}
+
+.drop i {
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.color-gr:hover {
+  color: rgb(5, 148, 5);
+  cursor: pointer;
+}
+
+.arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 1.5px 1.5px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: absolute;
+  background-color: #191e1e;
+  min-width: 220px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  display: block;
+  color: white;
+  padding: 7px 25px;
+  text-decoration: none;
+}
+
+.dropdown-content div {
+  display: block;
+  padding: 17px 25px 12px 25px;
+  font-weight: 700;
+  color: white;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  color: rgb(5, 148, 5);
+  transition: color 0.6s;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  transition: all 2s;
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.outer-link svg {
+  width: 14px;
+  height: 18px;
+  margin-left: 2px;
+  padding-top: 6px;
+}
+
+.info {
+  background: #1b1f23;
+}
+
+.info-headline {
+  padding-top: 90px;
+  padding-bottom: 40px;
+}
+.info-headline h1 {
+  color: white;
+  font-size: 55px;
+}
+
+.info-text {
+  max-width: 1100px;
+  padding-bottom: 70px;
+}
+
+.info-text span {
+  color: #bbbcbe;
+  font-size: 25px;
+  line-height: 1.7;
+}
+
+.card {
+  background: #262a2d;
+  padding: 50px 20px;
+}
+
+.card-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.card-item {
+  width: 48.5%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 40px 30px 70px 20px;
+  background: #1b1f23;
+  border-radius: 5px;
+  border: 1px solid #1b1f23;
+}
+
+.card-item:hover {
+  border: 1px solid grey;
+}
+
+.card-item img {
+  margin-right: 20px;
+}
+
+.card-title {
+  color: white;
+  font-size: 24px;
+}
+
+.card-text {
+  margin: 16px 0;
+  line-height: 1.5;
+  color: #bbbcbe;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 900px) {
+  .navbar {
+    display: none;
+  }
+
+  .nav {
+    padding-bottom: 10px;
+  }
+
+  .burger-menu {
+    display: block;
+    margin-top: 15px;
+  }
+
+  .burger-line {
+    width: 25px;
+    height: 3px;
+    color: white;
+    background: white;
+    margin-bottom: 4px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card-item {
+    width: 100%;
+  }
+}
