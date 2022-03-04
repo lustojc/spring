@@ -64,7 +64,7 @@ function renderCard(arrOfItems) {
 
   for (let i = 0; i < arrOfItems.length; i++) {
     card = `<a class="card-item dp-flex jc-betw" href="#">
-                    <img src='${arrOfItems[i].img}' alt="spring-boot">
+                    <img src='${arrOfItems[i].img}' alt="${arrOfItems[i].headline}">
                 <div>
                 <h3 class="card-title">${arrOfItems[i].headline}</h3>
                     <p class="card-text">
