@@ -38,7 +38,7 @@ img {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px 20px 0 20px;
 }
 
 a img {
@@ -211,9 +211,31 @@ a img {
   font-size: 18px;
 }
 
+.open {
+  z-index: 10;
+  order: 1;
+}
+
+
+.menu-open {
+  flex-direction: row;
+}
+
+.isOpen {
+  justify-content: center;
+}
+
+
 @media screen and (max-width: 900px) {
-  .navbar {
+  .hide {
     display: none;
+  }
+  
+  .menu-open {
+    flex-direction: column;
+    height: 100vh;
+    /* justify-content: center; */
+    align-items: center;
   }
 
   .nav {
@@ -221,17 +243,58 @@ a img {
   }
 
   .burger-menu {
+    cursor: pointer;
+    transition: all .5s ease-in-out;
     display: block;
-    margin-top: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-top: 50px;
+    padding-right: 20px;
   }
+  
 
   .burger-line {
     width: 25px;
     height: 3px;
     color: white;
     background: white;
-    margin-bottom: 4px;
+    transition: all .5s ease-in-out;
   }
+  .burger-line::before,
+  .burger-line::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: all .5s ease-in-out;
+    box-shadow: 0 2px 5px rgba(255,101,47,.2);
+  }
+  .burger-line::before {
+    transform: translateY(-8px);
+  }
+  .burger-line::after {
+    transform: translateY(8px);
+  }
+
+  /* ANIMATION */
+  .burger-menu.open .burger-line {
+  transform: translateX(-50px);
+  background: transparent;
+  box-shadow: none;
+  }
+  .burger-menu.open .burger-line::before {
+  transform: rotate(45deg) translate(35px, -35px);
+  }
+  .burger-menu.open .burger-line::after {
+  transform: rotate(-45deg) translate(35px, 35px);
+  }
+
+  .burger-line::after:hover {
+    background: green;
+  }
+
 }
 
 @media screen and (max-width: 800px) {

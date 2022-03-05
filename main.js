@@ -176,7 +176,7 @@ function renderHeader(arrOfHeaderItems) {
                                 <div class="dropdown-content">
                                     ${arrOfHeaderItems[a].options.map((el) => `<a href="#">${el}</a>`).join("")}
                                 </div>
-                            </div>`;
+                          </div>`;
         }
         dropdown.innerHTML += headerItems;
     }
@@ -184,3 +184,40 @@ function renderHeader(arrOfHeaderItems) {
 }
 
 renderHeader(arrOfHeaderItems);
+
+
+
+// burger menu
+
+let burgerBtn = document.querySelector('.burger-menu')
+let html = document.querySelector('html')
+let mainLogo = document.querySelector('.logo')
+let navWrapper = document.querySelector('.nav-wrapper')
+let navbar = document.getElementById('navbar')
+
+
+let menuOpen = false
+
+burgerBtn.addEventListener('click', ()=> {
+    if (!menuOpen) {
+        burgerBtn.classList.add('open')
+        html.style.overflow = "hidden"
+        dropdown.classList.remove('jc-betw')
+        dropdown.classList.add('menu-open')
+        navWrapper.classList.remove('jc-betw')
+        navWrapper.classList.add('isOpen')
+        mainLogo.classList.add('hide')
+        navbar.classList.remove('hide')
+        menuOpen = true;
+    } else {
+        burgerBtn.classList.remove('open')
+        html.style.overflow = "visible"
+        dropdown.classList.add('jc-betw')
+        dropdown.classList.remove('menu-open')
+        navWrapper.classList.add('jc-betw')
+        navWrapper.classList.remove('isOpen')
+        mainLogo.classList.remove('hide')
+        navbar.classList.add('hide')
+        menuOpen = false;
+    }
+})
