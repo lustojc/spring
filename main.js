@@ -187,37 +187,73 @@ renderHeader(arrOfHeaderItems);
 
 
 
+
+// mobile version of header
+
+let mobileNav = document.getElementById('nav-mobile')
+
+function renderAccodrion(arrOfHeaderItems) {
+    let headerAccordion = ``;
+    for (let i = 0; i < arrOfHeaderItems.length; i++) {
+        if (arrOfHeaderItems[i].options.length === 0) {
+            headerAccordion = `<button class="accordion-empty"><a href="#">${arrOfHeaderItems[i].title}</a</button>`
+        } else if (arrOfHeaderItems[i].title === "Projects") {
+            headerAccordion = `<button class="accordion">${arrOfHeaderItems[i].title}</button>
+                                <div class="panel">
+                                ${arrOfHeaderItems[i].options.map((el) => `<a href="#">${el}</a>`).join("")}
+                                    <div>Development Tools</div>
+                                    <a href="#">Spring Tools 4</a>
+                                    <a href="#">Spring Initializr</a>
+                                </div>`;
+        } else {
+            headerAccordion = `<button class="accordion">${arrOfHeaderItems[i].title}</button>
+                                <div class="panel">
+                                ${arrOfHeaderItems[i].options.map((el) => `<a href="#">${el}</a>`).join("")}
+                                </div>`;
+        }
+        mobileNav.innerHTML += headerAccordion;
+        
+    }
+    return mobileNav
+}
+
+console.log(renderAccodrion(arrOfHeaderItems));
+
+// accordion menu
+let acc = document.getElementsByClassName("accordion");
+
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    let panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+
+
 // burger menu
 
 let burgerBtn = document.querySelector('.burger-menu')
 let html = document.querySelector('html')
-let mainLogo = document.querySelector('.logo')
-let navWrapper = document.querySelector('.nav-wrapper')
-let navbar = document.getElementById('navbar')
+let mobileContainer = document.querySelector('.nav-mobile-container')
 
 
 let menuOpen = false
 
-burgerBtn.addEventListener('click', ()=> {
+burgerBtn.addEventListener('click', () => {
     if (!menuOpen) {
         burgerBtn.classList.add('open')
-        html.style.overflow = "hidden"
-        dropdown.classList.remove('jc-betw')
-        dropdown.classList.add('menu-open')
-        navWrapper.classList.remove('jc-betw')
-        navWrapper.classList.add('isOpen')
-        mainLogo.classList.add('hide')
-        navbar.classList.remove('hide')
+        html.classList.add('scrollPage')
+        mobileContainer.classList.add('menu-active')
         menuOpen = true;
     } else {
         burgerBtn.classList.remove('open')
-        html.style.overflow = "visible"
-        dropdown.classList.add('jc-betw')
-        dropdown.classList.remove('menu-open')
-        navWrapper.classList.add('jc-betw')
-        navWrapper.classList.remove('isOpen')
-        mainLogo.classList.remove('hide')
-        navbar.classList.add('hide')
+        html.classList.remove('scrollPage')
+        mobileContainer.classList.remove('menu-active')
         menuOpen = false;
     }
 })
