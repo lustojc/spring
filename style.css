@@ -172,6 +172,7 @@ a img {
 .card {
   background: #262a2d;
   padding: 50px 20px;
+  min-height: 1000px;
 }
 
 .card-wrapper {
@@ -310,6 +311,41 @@ a img {
   overflow: visible;
 }
 
+.input-wrapper {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.input-wrapper h3 {
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+.input-wrapper input {
+  width: 500px;
+  height: 50px;
+  border: 2px solid rgb(5, 148, 5);
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+  font-size: 20px;
+}
+
+.hideBlock {
+  display: none;
+}
+
+.nt-message {
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  margin-top: 150px;
+}
+
 @media screen and (max-width: 900px) {
   .hide {
     display: none;
@@ -380,4 +416,26 @@ a img {
   .card-item {
     width: 100%;
   }
+}
+
+@media screen and (max-width: 550px) {
+  .input-wrapper input {
+    width: 300px;
+    height: 30px;
+    font-size: 15px;
+  }
+  .input-wrapper h3 {
+    font-size: 20px;
+  }
+  .accordion {
+    font-size: 25px;
+  }
+  .accordion-empty a {
+    font-size: 25px;
+  }
+  
+  .panel a {
+    font-size: 20px;
+  }
+
 }

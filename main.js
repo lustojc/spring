@@ -217,7 +217,7 @@ function renderAccodrion(arrOfHeaderItems) {
     return mobileNav
 }
 
-console.log(renderAccodrion(arrOfHeaderItems));
+renderAccodrion(arrOfHeaderItems)
 
 // accordion menu
 let acc = document.getElementsByClassName("accordion");
@@ -256,4 +256,73 @@ burgerBtn.addEventListener('click', () => {
         mobileContainer.classList.remove('menu-active')
         menuOpen = false;
     }
+})
+
+
+// block search 
+// let searchInput = document.querySelector('#search');
+
+// function renderSearch() {
+//     let timeout = null;
+//     searchInput.addEventListener('input', () => {
+//         clearTimeout(timeout);
+//         timeout = setTimeout(function () {
+//             let val = searchInput.value.toLowerCase().trim();
+//             let cardHeadline = document.querySelectorAll('.card-item .card-title')
+//             let notFoundMessage = document.querySelector('.nt-message')
+//             let match = false
+//                 if (val != "") {
+//                     cardHeadline.forEach((elem) => {
+//                         if (elem.innerText.toLowerCase().search(val) == -1) {
+//                             elem.closest('.card-item').classList.add('hideBlock')
+//                             match = true
+//                         } else {
+//                             elem.closest('.card-item').classList.remove('hideBlock')
+//                             match = false
+//                         }})
+//                 } else {
+//                     cardHeadline.forEach((e) => {
+//                         e.closest('.card-item').classList.remove('hideBlock')
+//                     })
+//                     // notFoundMessage.classList.add('hideBlock')
+//                 }
+//                 notFoundMessage.style.display = match ? "block" : 'none';
+//         }, 400);
+//     })
+// }
+// renderSearch()
+
+// вопрос как тут сделать так чтобы показывало сообщение про нот фаунд
+
+
+
+let searchInput = document.querySelector('#search');
+
+function search(searchInput) {
+
+    let cardHeadline = document.querySelectorAll('.card-item .card-title')
+    let notFoundMessage = document.querySelector('.nt-message')
+    let val = searchInput.value.toLowerCase().trim();
+
+    let match = false;
+
+    cardHeadline.forEach(item => {
+        let text = item.textContent.toLowerCase();
+        if (text.includes(val)) {
+            match = true;
+            item.closest('.card-item').style.display = 'flex';
+        } else {
+            item.closest('.card-item').style.display = 'none';
+        }
+    });
+
+    notFoundMessage.style.display = match ? 'none' : 'flex';
+}
+
+let timeout = null;
+searchInput.addEventListener('input', () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+        search(searchInput)
+    }, 400)
 })
