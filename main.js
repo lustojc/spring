@@ -83,11 +83,9 @@ renderCard(arrOfItems);
 
 // Items shown in the header (Why Spring, Learn, etc.) must be displayed from an array of objects in JS (not in HTML) //
 
-let dropdown = document.getElementById("dropdown");
-
 let arrOfHeaderItems = [
     {
-        title: "Why Spring",
+        title: "Why Spring ",
         options: [
             "Overview",
             "Microservices",
@@ -98,10 +96,12 @@ let arrOfHeaderItems = [
             "Serverless",
             "Batch",
         ],
+        id: 0,
     },
     {
-        title: "Learn",
+        title: "Learn ",
         options: ["Overview", "Quickstart", "Guides", "Blog"],
+        id: 1,
     },
     {
         title: "Projects",
@@ -117,75 +117,95 @@ let arrOfHeaderItems = [
             "Spring Security",
         ],
         devTools: ["Spring Tools 4", "Spring Initializr"],
+        id: 2,
     },
     {
         title: "Training",
         options: [],
+        id: 3,
     },
     {
         title: "Support",
         options: [],
+        id: 4,
     },
     {
-        title: "Community",
+        title: "Community ",
         options: [`Overview`, `Events`, `Team`],
+        id: 5,
     },
+    
 ];
 
-function renderHeader(arrOfHeaderItems) {
-    let headerItems = ``;
-    for (let a = 0; a < arrOfHeaderItems.length; a++) {
-        if (arrOfHeaderItems[a].options.length === 0) {
-            headerItems = `<div class="dropdown">
-                            <p class="drop color-gr">${arrOfHeaderItems[a].title}</p>
-                          </div>`;
-        } else if (arrOfHeaderItems[a].title === "Projects") {
-            headerItems = 
-            `<div class="dropdown">
-                <p class="drop">${arrOfHeaderItems[a].title}<i class="arrow down"></i></p>
-                <div class="dropdown-content">
-                    ${arrOfHeaderItems[a].options.map((el) => `<a href="#">${el}</a>`).join("")}
-                    <div>Development Tools</div>
-                        <a href="#">Spring Tools 4</a>
-                            <a class="outer-link" href="#">Spring Initializr
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                    x="0px" y="0px" width="24" height="24" viewBox="0 0 226 226"
-                                    style=" fill:#000000;">
-                                <g transform="">
-                                    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
-                                        stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
-                                        stroke-dasharray="" stroke-dashoffset="0" font-family="none"
-                                        font-weight="none" font-size="none" text-anchor="none"
-                                        style="mix-blend-mode: normal">
-                                        <path d="M0,226v-226h226v226z" fill="#000000"></path>
-                                            <g fill="#ffffff">
-                                                <path
-                                                    d="M47.08333,28.25c-10.29301,0 -18.83333,8.54033 -18.83333,18.83333v131.83333c0,10.29301 8.54033,18.83333 18.83333,18.83333h131.83333c10.29301,0 18.83333,-8.54032 18.83333,-18.83333v-65.91667h-18.83333v65.91667h-131.83333v-131.83333h65.91667v-18.83333zM131.83333,28.25v18.83333h33.76758l-87.50879,87.50879l13.31575,13.31575l87.50879,-87.50879v33.76758h18.83333v-65.91667z">
-                                                </path>
-                                            </g>
-                                        <path d="" fill="none"></path>
-                                    </g>
-                                </g>
-                            </svg>
-                        </a>
-                </div>
-            </div>`;
-        } else {
-            headerItems = `<div class="dropdown">
-                                    <p class="drop">${arrOfHeaderItems[a].title} <i class="arrow down"></i></p>
-                                <div class="dropdown-content">
-                                    ${arrOfHeaderItems[a].options.map((el) => `<a href="#">${el}</a>`).join("")}
-                                </div>
-                          </div>`;
+let svgOuterLink = 
+`<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 226 226" style=" fill:#000000;">
+    <g transform="">
+        fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+        stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+        stroke-dasharray="" stroke-dashoffset="0" font-family="none"
+        font-weight="none" font-size="none" text-anchor="none"
+        style="mix-blend-mode: normal">
+            <path d="M0,226v-226h226v226z" fill="#000000"></path>
+    <g fill="#ffffff">
+        <path
+            d="M47.08333,28.25c-10.29301,0 -18.83333,8.54033 -18.83333,18.83333v131.83333c0,10.29301 8.54033,18.83333 18.83333,18.83333h131.83333c10.29301,0 18.83333,-8.54032 18.83333,-18.83333v-65.91667h-18.83333v65.91667h-131.83333v-131.83333h65.91667v-18.83333zM131.83333,28.25v18.83333h33.76758l-87.50879,87.50879l13.31575,13.31575l87.50879,-87.50879v33.76758h18.83333v-65.91667z">
+        </path>
+    </g>
+    path d="" fill="none"></path>
+    </g>
+    </g>
+</svg>`
+
+let dropdown = document.getElementById("dropdown");
+let arrOfTitles = arrOfHeaderItems.map((el) => el.title); // массив с названиями
+let arrOfOptions = arrOfHeaderItems.map((el) => el.options); // массив опций(селектов)
+let arrOfId = arrOfHeaderItems.map((el) => el.id); // массив id
+let arrOfDevTools = arrOfHeaderItems.map((el) => el.devTools); // массив с DevTool items
+ 
+arrOfTitles.forEach((el, ind) => {
+  const headerContainer = document.createElement("div");
+  headerContainer.className = "dropdown";
+  const p = document.createElement("p");
+  p.className = "drop color-gr";
+  p.setAttribute("href", "#");
+  p.innerHTML = el;
+  const dropCont = document.createElement("div");
+  if (el !== "Training" && el !== "Support") {
+    p.removeAttribute("href");
+    p.className = "drop";
+    let i = document.createElement("i");
+    i.className = "arrow down";
+    p.append(i);
+    dropCont.className = "dropdown-content";
+    for (let i = 0; i < arrOfHeaderItems.length; i++) {
+      if (arrOfId[i] == ind) {
+        arrOfOptions[i].forEach((el) => {
+          const aLink = document.createElement("a");
+          aLink.setAttribute("href", "#");
+          aLink.innerHTML = el;
+          dropCont.append(aLink);
+        });
+        if (ind === 2) {
+          let divDevTools = document.createElement("div");
+          divDevTools.innerHTML = `Development Tools`;
+          dropCont.append(divDevTools);
+          arrOfDevTools[i].forEach((el) => {
+            const devLink = document.createElement("a");
+            devLink.setAttribute("href", "#");
+            devLink.innerHTML = el;
+            dropCont.append(devLink);
+          });
+          dropCont.lastChild.className = "outer-link";
+          dropCont.lastChild.innerHTML += svgOuterLink;
         }
-        dropdown.innerHTML += headerItems;
+      }
     }
-    return dropdown;
-}
-
-renderHeader(arrOfHeaderItems);
-
-
+    headerContainer.prepend(dropCont);
+  } else {
+  }
+  headerContainer.prepend(p);
+  dropdown.append(headerContainer);
+});
 
 
 // mobile version of header
@@ -259,42 +279,8 @@ burgerBtn.addEventListener('click', () => {
 })
 
 
-// block search 
-// let searchInput = document.querySelector('#search');
 
-// function renderSearch() {
-//     let timeout = null;
-//     searchInput.addEventListener('input', () => {
-//         clearTimeout(timeout);
-//         timeout = setTimeout(function () {
-//             let val = searchInput.value.toLowerCase().trim();
-//             let cardHeadline = document.querySelectorAll('.card-item .card-title')
-//             let notFoundMessage = document.querySelector('.nt-message')
-//             let match = false
-//                 if (val != "") {
-//                     cardHeadline.forEach((elem) => {
-//                         if (elem.innerText.toLowerCase().search(val) == -1) {
-//                             elem.closest('.card-item').classList.add('hideBlock')
-//                             match = true
-//                         } else {
-//                             elem.closest('.card-item').classList.remove('hideBlock')
-//                             match = false
-//                         }})
-//                 } else {
-//                     cardHeadline.forEach((e) => {
-//                         e.closest('.card-item').classList.remove('hideBlock')
-//                     })
-//                     // notFoundMessage.classList.add('hideBlock')
-//                 }
-//                 notFoundMessage.style.display = match ? "block" : 'none';
-//         }, 400);
-//     })
-// }
-// renderSearch()
-
-// вопрос как тут сделать так чтобы показывало сообщение про нот фаунд
-
-
+// search
 
 let searchInput = document.querySelector('#search');
 
@@ -326,3 +312,8 @@ searchInput.addEventListener('input', () => {
         search(searchInput)
     }, 400)
 })
+
+
+
+
+
